@@ -1,6 +1,6 @@
 const request = require('request');
 const MongoClient = require("mongodb").MongoClient;
-const mongoClient = new MongoClient("mongodb://localhost:27017/");
+const mongoClient = new MongoClient("mongodb://localhost:27017/",{ useUnifiedTopology: true });
 function rq(param){
     mongoClient.connect(function(err, client){
         var db = client.db("CSFAIL");
@@ -30,6 +30,7 @@ function rq(param){
         setTimeout(rq,200,param+1);
       });
       if(err){
+        client.close();
         return console.log(err);
     }
 });
