@@ -1,7 +1,7 @@
 const request = require('request');
 const MongoClient = require("mongodb").MongoClient;
-const mongoClient = new MongoClient("mongodb://localhost:27017/",{ useUnifiedTopology: true });
 function rq(param){
+    var mongoClient = new MongoClient("mongodb://localhost:27017/",{ useUnifiedTopology: true });
     mongoClient.connect(function(err, client){
         var db = client.db("CSFAIL");
         var collection = db.collection("games");
