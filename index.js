@@ -26,9 +26,9 @@ function rq(param){
             }
             console.log(result.ops);
             client.close();
+            setTimeout(rq,200,param+1);
         });
         console.log(`Запрос завершён за ${(Date.now()-startTime)/100}`);
-        setTimeout(rq,200,param+1);
       });
       if(err){
         client.close();
