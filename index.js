@@ -3,8 +3,8 @@ const MongoClient = require("mongodb").MongoClient;
 const mongoClient = new MongoClient("mongodb://localhost:27017/");
 function rq(param){
     mongoClient.connect(function(err, client){
-        const db = client.db("CSFAIL");
-        const collection = db.collection("games");
+        var db = client.db("CSFAIL");
+        var collection = db.collection("games");
     request(`https://api.cs.fail/crash/get-game/${param}`, function (error, response, body) {
         var startTime = Date.now();
         console.error('error:', error); // Print the error if one occurred
@@ -27,11 +27,11 @@ function rq(param){
             console.log(result.ops);
         });
         console.log(`Запрос завершён за ${(Date.now()-startTime)/100}`);
-        setTimeout(rq,100,param+1);
+        setTimeout(rq,200,param+1);
       });
       if(err){
         return console.log(err);
     }
 });
 }
-rq(50000);
+rq(53412);
