@@ -17,7 +17,12 @@ function rq(param){
         var q =JSON.parse(body);
         if(q.error_text=="api.crash.no_game"){
             client.close();
-            return console.log("Игр больше нет, сбор данных завершен.");
+            if(param<900000){
+                setTimeout(rq,200,param+1);
+                return console.log("Ошибка игры");
+            }else{
+                return console.log("Игр больше нет, сбор данных завершен.");
+            }
         }
         collection.insertOne(q, function(err, result){
           
@@ -36,4 +41,4 @@ function rq(param){
     }
 });
 }
-rq(53412);
+rq(170000);
